@@ -12,8 +12,9 @@ class Field extends Component {
                             type={this.props.type}
                             placeholder={this.props.placeholder}
                             data-sb-validations="required"
-                            value={this.props.value}
-                            onChange={e => this.props.onChange(e)}
+                            name={this.props.name}
+                            onChange={this.props.onChange}
+                            onBlur={this.props.onBlur}
                         />
                         :
                         <textarea
@@ -21,12 +22,18 @@ class Field extends Component {
                             id={this.props.name}
                             placeholder={this.props.placeholder}
                             data-sb-validations="required"
-                            value={this.props.value}
-                            onChange={e => this.props.onChange(e)}
+                            name={this.props.name}
+                            onChange={this.props.onChange}
+                            onBlur={this.props.onBlur}
                         />
                 }
 
-                <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                <div className="text-danger" >
+                    {(this.props.touched && this.props.errors) && 
+                    <span>{this.props.name} is required</span>
+                    } 
+                </div>
+
             </div>
         )
     }
